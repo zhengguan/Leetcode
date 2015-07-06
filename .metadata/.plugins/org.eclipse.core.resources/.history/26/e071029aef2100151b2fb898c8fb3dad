@@ -1,0 +1,83 @@
+// Leetcode 60	
+// Permutation Sequence
+// https://leetcode.com/problems/permutation-sequence/
+
+import java.util.ArrayList;
+
+import java.util.Collections;
+
+// The set [1,2,3,бн,n] contains a total of n! unique permutations.
+// 
+// By listing and labeling all of the permutations in order,
+// We get the following sequence (ie, for n = 3):
+// 
+// "123"
+// "132"
+// "213"
+// "231"
+// "312"
+// "321"
+// Given n and k, return the kth permutation sequence.
+// 
+// Note: Given n will be between 1 and 9 inclusive.
+import tester.Tester;
+
+public class Solution {
+    public String getPermutation(int n, int k) {
+        int[] nums = this.getArray(n);
+        ArrayList<String> allPermutations = this.getPermutationOfArray(nums);
+        Collections.sort(allPermutations);
+        return allPermutations.get(k - 1);
+    }
+    
+    // RETURNS: an array of length n, with value from 1 to n
+    public int[] getArray(int n) {
+    	int[] nums = new int[n];
+    	for(int i = 0; i < n; i++) {
+    		nums[i] = i + 1;
+    	}
+    	return nums;
+    }
+    
+    // RETURNS: a list of all permutations of the given array with each one 
+    // stored as a String
+    public ArrayList<String> getPermutationOfArray(int[] nums) {
+    	ArrayList<String> allPermutation = new ArrayList<String>();
+    	getPermutationOfArrayHelper(allPermutation, nums, 0);
+    	return allPermutation;
+    }
+    
+    // EFFECT: store all permutations of the given array in the given list,
+    // with each one stored as a String
+    public void getPermutationOfArrayHelper(ArrayList<String> allPermutation, 
+    		int[] nums, int start) {
+    	if(start == nums.length - 1) {
+    		allPermutation.add(nums.toString());
+    	}
+    	else {
+    		for(int i = start; i < nums.length; i++) {
+    			swap(nums, start, i);
+    			getPermutationOfArrayHelper(allPermutation, nums, start + 1);
+    			swap(nums, start, i);
+    		}
+    	}
+    }
+    
+    // EFFECT: swap nums[i] and nums[j]
+    public void swap(int[] nums, int i, int j) {
+    	int tmp = nums[i];
+    	nums[i] = nums[j];
+    	nums[j] = tmp;
+    }
+}
+
+class SolutionExamples {
+	Solution s = new Solution();
+	
+	boolean testGetPermutaion(Tester t) {
+		return
+		t.checkExpect(s.getPermutation(1, 1), new String("1")) &&
+		t.checkExpect(s.getPermutation(2, 1), "12") &&
+		t.checkExpect(s.getPermutation(3, 3), "213");
+	}
+}

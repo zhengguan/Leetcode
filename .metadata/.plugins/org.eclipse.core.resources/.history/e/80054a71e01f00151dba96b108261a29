@@ -1,0 +1,70 @@
+// Leetcode 145	
+// Binary Tree Postorder Traversal
+// Given a binary tree, return the postorder traversal of its nodes' values.
+// https:// leetcode.com/problems/binary-tree-postorder-traversal/		
+// 
+// For example:
+// Given binary tree {1,#,2,3},
+//    1
+//     \
+//      2
+//     /
+//    3
+// return [3,2,1].
+// 
+// Note: Recursive solution is trivial, could you do it iteratively?
+
+import tester.Tester;
+
+import java.util.*;
+
+/**
+ * Definition for a binary tree node.
+ */
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int x) { val = x; }
+}
+ 
+public class Solution {
+    List<Integer> treeTraversal; 
+    
+    public List<Integer> postorderTraversal(TreeNode root) {
+    	treeTraversal = new ArrayList<Integer>();
+        postorderTraversalRecur(root);
+        return treeTraversal;
+    }
+    
+
+    public void postorderTraversalRecur(TreeNode root) {
+    	if(root == null) {
+    		return;
+    	}
+    	else {
+    		postorderTraversalRecur(root.left);
+    		postorderTraversalRecur(root.right);
+    		treeTraversal.add(root.val);
+    		return;
+    	}
+    }
+}
+
+class SolutionExamples {
+	Solution s = new Solution();
+	
+	// tests for method postorderTraversal()
+	boolean testPostorderTraversal(Tester t) {
+		TreeNode tn1 = new TreeNode(1);
+		TreeNode tn2 = new TreeNode(2);
+		TreeNode tn3 = new TreeNode(3);
+		tn1.right = tn2;
+		tn2.left = tn3;
+		System.out.println(s.postorderTraversal(tn1.left));
+		System.out.println(s.postorderTraversal(tn3));
+		System.out.println(s.postorderTraversal(tn1));
+		return
+		true;
+	}
+}

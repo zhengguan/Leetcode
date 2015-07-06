@@ -1,0 +1,4 @@
+1.¸´ÖÆÊý×é
+  -- int copy[] = Arrays.copyOf(a, a.length);
+  -- System.arraycopy
+     public static void arraycopy(Object src, int srcPos, Object dest, int destPos, int length)
