@@ -1,0 +1,110 @@
+// Leetcode 94	
+// Binary Tree Inorder Traversal
+// https:// leetcode.com/problems/binary-tree-inorder-traversal/
+
+// Given a binary tree, return the inorder traversal of its nodes' values.
+// 
+// For example:
+// Given binary tree {1,#,2,3},
+//    1
+//     \
+//      2
+//     /
+//    3
+// return [1,3,2].
+// 
+// Note: Recursive solution is trivial, could you do it iteratively?
+// 
+// confused what "{1,#,2,3}" means? > read more on how binary tree is serialized on OJ.
+	
+import java.util.*;
+
+import tester.Tester;
+
+/**
+ * Definition for a binary tree node.
+ */
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int x) { val = x; }
+}
+
+public class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        ArrayList<Integer> traversal = new ArrayList<Integer>();
+//        ArrayList<TreeNode> queue = new ArrayList<TreeNode>();
+        Stack<TreeNode> queue = new Stack<TreeNode>();
+        queue.add(root);
+        while(queue.isEmpty() == false) {
+            TreeNode node = queue.get();
+            queue.remove();
+            if(node == null) {
+                continue;
+            }
+            else {
+                traversal.add(node.val);
+                queue.add(node.right);
+                queue.add(node.left);
+            }
+        }
+        return traversal;
+    }
+}
+
+
+// REPRESENTS: a queue
+class Stack<T> {
+    ArrayList<T> list = new ArrayList<T>();
+    
+    Stack() {}
+    
+    // EFFECT: add an element t to the list in this Stack 
+    public void add(T t) {
+    	this.list.add(t);
+    }
+    
+    // RETURNS: the first element of the list in this Stack
+    public T get() {
+    	return this.list.get(list.size() - 1);
+    }
+    
+    // WHERE: the list in this Stack should be non-empty
+    // EFFECT: remove the first element of the list in this Stack
+    public void remove() {
+    	this.list.remove(list.size() - 1);
+    }
+    
+    // RETURNS: true iff the list in this Stack is empty
+    public boolean isEmpty() {
+    	return this.list.size() == 0;
+    }  
+}
+
+class SolutionExamples {
+	Solution s = new Solution();
+	
+	
+	// RETURSN: a corresponding list of the given array
+	ArrayList<Integer> arrayToList(int[] array) { 
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		for(int i = 0; i < array.length; i++) {
+			list.add(array[i]);
+		}
+		return list;
+	}
+	
+	
+	// testss for method inorderTraversal()
+	boolean inorderTraversal(Tester t) {
+		TreeNode tn1 = new TreeNode(1);
+		TreeNode tn2 = new TreeNode(2);
+		TreeNode tn3 = new TreeNode(3);
+		tn1.left = tn2;
+		tn1.right = tn3;
+		return 
+		t.checkExpect(s.inorderTraversal(tn1.left), new ArrayList<Integer>()) &&
+		t.checkExpect(s.inorderTraversal(tn1.left), this.arrayToList(new int[0]));
+	}
+}
