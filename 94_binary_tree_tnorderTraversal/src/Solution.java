@@ -32,62 +32,61 @@ class TreeNode {
 }
 
 public class Solution {
+	// RETURNS: a list that represents the inorder traversal of the given tree
     public List<Integer> inorderTraversal(TreeNode root) {
-        ArrayList<Integer> traversal = new ArrayList<Integer>();
-//        ArrayList<TreeNode> queue = new ArrayList<TreeNode>();
-        Stack<TreeNode> queue = new Stack<TreeNode>();
-        queue.push(root);
-        while(queue.isEmpty() == false) {
-            TreeNode node = queue.pop();
-
-            if(node == null) {
-                continue;
-            }
-            else {
-                traversal.add(node.val);
-                queue.push(node.right);
-                queue.push(node.left);
-            }
-        }
-        return traversal;
-    }
-}
-
-
-// REPRESENTS: a queue
-class Stack<T> {
-    ArrayList<T> list = new ArrayList<T>();
-    
-    Stack() {}
-    
-    // EFFECT: add an element t to the top of this Stack 
-    public void push(T t) {
-    	this.list.add(t);
+    	List<Integer> traversal = new ArrayList<Integer>();
+    	this.inorderTraversalHelper(traversal, root);
+    	return traversal;
     }
     
-    // RETURNS: the top element of this Stack
-    public T top() {
-    	return this.list.get(list.size() - 1);
-    }
-    
-    // WHERE: this Stack should be non-empty
-    // EFFECT: pop the top element of this Stack
-    // RETURNS: the top element
-    public T pop() {
-    	T t = this.list.get(list.size() - 1);
-    	this.list.remove(list.size() - 1);
-    	return t;
-    }
-    
-    // RETURNS: true iff this Stack is empty
-    public boolean isEmpty() {
-    	return this.list.size() == 0;
+    // EFFECT: traverse the Tree root and add all value into traversal
+    public void inorderTraversalHelper(List<Integer> traversal, 
+    		TreeNode root) {
+    	if(root == null) {
+    		return;
+    	}
+    	else {
+    		this.inorderTraversalHelper(traversal, root.left);
+    		traversal.add(root.val);
+    		this.inorderTraversalHelper(traversal, root.right);
+    	}
     }  
 }
 
-class SolutionExamples {
-	Solution s = new Solution();
+class SolutionIter {
+	// RETURNS: a list that represents the inorder traversal of the given tree
+    public List<Integer> inorderTraversal(TreeNode root) {
+    	List<Integer> traversal = new ArrayList<Integer>();
+    	this.inorderTraversalHelper(traversal, root);
+    	return traversal;
+    }
 	
+    // EFFECT: traverse the Tree root and add all TreeNode value into traversal
+    public void inorderTraversalHelper(List<Integer> traversal, 
+    		TreeNode root) {
+    	if(root == null) {
+    		return;
+    	}
+    	else {
+    		TreeNode p = root;
+    		Stack<TreeNode> stack = new Stack<TreeNode>();
+    		while(!stack.empty() || p != null) {
+    			while(p != null) {
+    				stack.push(p);
+    				p = p.left;
+    			}
+    			p = stack.pop();
+    			traversal.add(p.val);
+    			p = p.right;
+    		}
+    		return;
+    	}
+    }
+}
+
+
+class SolutionExamples {
+	SolutionIter s = new SolutionIter();	
 	
 	// RETURSN: a corresponding list of the given array
 	List<Integer> arrayToList(int[] array) { 
@@ -104,14 +103,16 @@ class SolutionExamples {
 		TreeNode tn2 = new TreeNode(2);
 		TreeNode tn3 = new TreeNode(3);
 		TreeNode tn4 = new TreeNode(4);
+		TreeNode tn5 = new TreeNode(5);
 		tn1.left = tn2;
 		tn1.right = tn3;
 		tn3.left = tn4;
+		tn3.right = tn5;
 		return 
 		t.checkExpect(s.inorderTraversal(tn2.left), new ArrayList<Integer>()) &&
 		t.checkExpect(s.inorderTraversal(tn1.left), 
 				this.arrayToList(new int[]{2})) &&
 		t.checkExpect(s.inorderTraversal(tn1), 
-				this.arrayToList(new int[]{2, 1, 3}));
+				this.arrayToList(new int[]{2, 1, 4, 3, 5}));
 	}
 }
