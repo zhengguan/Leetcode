@@ -70,7 +70,9 @@ class SolutionIter {
     	else {
     		TreeNode p = root;
     		Stack<TreeNode> stack = new Stack<TreeNode>();
-    		while(!stack.empty() || p != null) {
+    		while(!stack.empty() || p != null) 
+    		//@loop_invariant p represents  	
+    		{
     			while(p != null) {
     				stack.push(p);
     				p = p.left;
