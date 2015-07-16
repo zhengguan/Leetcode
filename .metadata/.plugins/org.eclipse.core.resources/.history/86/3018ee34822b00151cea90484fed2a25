@@ -55,13 +55,10 @@ public class Solution {
     }
     
     // GIVEN: a Tree root and two TreeNode p, q in root
-    /* RETURNS: an IsAncestor \result,
-     * if (\result.ancestor != null), then it's the LCA of p and q in Tree root
-     * else if (\result.isAncestorOfNode1 == true), then root is the ancestor
-     * of p, otherwise root is not the ancestor of p,
-     * else if (\result.isAncestorOfNode2 == true), then root is the ancestor
-     * of q, otherwise root is not the ancestor of q.
-     */
+    // RETURNS: if root contains the two TreeNode return the lowest common 
+    // ancestor in IsAncestor, otherwise set the corresponding falg 
+    // IsAncestor.isAncestorOfNode1 and IsAncestor.isAncestorOfNode2
+    // TERMINATION: the height of the Tree root becomes smaller
     public IsAncestor lCAHelper(TreeNode root, TreeNode p, TreeNode q) {
     	if(root == null) {
     		return new IsAncestor(false, false, null);

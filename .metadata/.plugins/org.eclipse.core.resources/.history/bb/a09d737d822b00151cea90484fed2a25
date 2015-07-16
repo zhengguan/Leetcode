@@ -94,6 +94,7 @@ public class Solution {
     		   bits of the original n; @*/    		
     		{
     			cs[i - 1] = (char)('0' + (n & 1));
+    			System.out.println("cs[i-1]:" + cs[i-1]);
     			n = n >>> 1;
     		}
     		return new String(cs, i, length - i);
