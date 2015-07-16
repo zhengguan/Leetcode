@@ -1,0 +1,72 @@
+// Leetcode 67
+// Add Binary
+// https://leetcode.com/problems/add-binary/
+
+// Given two binary strings, return their sum (also a binary string).
+// 
+// For example,
+// a = "11"
+// b = "1"
+// Return "100".
+
+import tester.Tester;
+
+public class Solution {
+	public String addBinary(String a, String b) {
+		return this.addBinary1(a, b);
+	}
+	
+	// GIVEN: two binary Strings
+	// RETURNS: the binary String of their sum
+    public String addBinary1(String a, String b) {
+        return Integer.toBinaryString(Integer.parseInt(a, 2) 
+        		+ Integer.parseInt(b,2));
+    }
+    
+	// GIVEN: two binary Strings
+	// RETURNS: the binary String of their sum
+    public String addBinary2(String a, String b) {
+    	char[] sum = new char[Math.max(a.length(), b.length()) + 1];
+    	int carry = 0;
+    	for(int i = 0; i < sum.length; i++) {
+    		int sumOfBit = this.getBit(a, i) + this.getBit(b, i) + carry;
+    		sum[sum.length - 1 - i] = (char)('0' + sumOfBit % 2);
+    		carry = sumOfBit / 2;
+    	}
+    	if(sum[0] == '0') {
+    		return new String(sum, 1, sum.length - 1);
+    	}
+    	else {
+    		return new String(sum);
+    	}
+    }
+    
+    // GIVEN: a String represents the binary of an integer and an int i 
+    // represents index
+    // RETURNS: the ith bit of the integer counted from left start from 0
+    public int getBit(String s, int i) {
+    	if(i >= s.length()) {
+    		return 0;
+    	}
+    	else {
+    		return s.charAt(s.length() - 1 - i) - '0';
+    	}
+    }
+    
+    // GIVEN: a binary Strings that represents a number and an int i
+    // RETURNS: the int value 
+    
+    
+}
+
+class SolutionExamples {
+	Solution s = new Solution();
+	
+	// tests for method addBinary()
+	boolean testAddBinary(Tester t) {
+		return
+		t.checkExpect(s.addBinary("0", "1"), "1") &&
+		t.checkExpect(s.addBinary("1", "1"), "10") &&
+		t.checkExpect(s.addBinary("11", "11"), "110");		
+	}
+}
