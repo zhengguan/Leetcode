@@ -18,6 +18,7 @@ import tester.Tester;
 
 import java.util.*;
 
+
 /**
  * Definition for a binary tree node.
  */
@@ -34,6 +35,7 @@ import java.util.*;
 // 	-- (Int null Tree)
 // 	-- (Int Tree Tree)
 
+
 class TreeNode {
     int val;
     TreeNode left;
@@ -45,12 +47,11 @@ class TreeNode {
 }
  
 public class Solution {
-    List<Integer> treeTraversal; 
+    List<Integer> treeTraversal = new ArrayList<Integer>();
     
     public List<Integer> postorderTraversal(TreeNode root) {
-    	treeTraversal = new ArrayList<Integer>();
-        postorderTraversalRecur(root);
-//        postorderTraversalIter(root);
+//        this.postorderTraversalRecur(root);
+        this.postorderTraversalIter(root);
         return treeTraversal;
     }
    
@@ -64,6 +65,19 @@ public class Solution {
     		postorderTraversalRecur(root.right);
     		treeTraversal.add(root.val);
     		return;
+    	}
+    }
+    
+    public void postorderTraversalIter(TreeNode root) {
+    	Stack<TreeNode> stack = new Stack<TreeNode>();
+    	TreeNode node = root;
+    	while(!stack.isEmpty() || node != null) {
+    		while(node != null) {
+    			stack.push(node);
+    			node = node.left;
+    		}
+    		node = stack.pop();
+    		
     	}
     }
 
@@ -90,7 +104,7 @@ class SolutionExamples {
 	boolean testPostorderTraversal(Tester t) {
 		TreeNode[] tns = new TreeNode[8];
 		for(int i = 0; i < 8; i++) {
-			tns[i] = new TreeNode(i + 1);
+			tns[i] = new TreeNode(i);
 		}
 		for(int i = 1; i < 4; i++) {
 			tns[i].left = tns[i * 2];
@@ -101,8 +115,8 @@ class SolutionExamples {
 		t.checkExpect(s.postorderTraversal(tns[6].left), 
 				this.arrayToList(new int[] {})) &&
 		t.checkExpect(s.postorderTraversal(tns[5]), 
-				this.arrayToList(new int[] {6})) &&
-		t.checkExpect(s.postorderTraversal(tns[0]), 
+				this.arrayToList(new int[] {5})) &&
+		t.checkExpect(s.postorderTraversal(tns[1]), 
 				this.arrayToList(new int[] {4, 5, 2, 6, 7, 3, 1}));
 	}
 }
