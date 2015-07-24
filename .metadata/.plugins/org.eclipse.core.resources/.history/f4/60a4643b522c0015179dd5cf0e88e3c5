@@ -1,0 +1,80 @@
+// Leetcode 16
+// 3Sum Closest
+// https://leetcode.com/problems/3sum-closest/
+
+// Given an array S of n integers, find three integers in S such that the sum is
+// closest to a given number, target. Return the sum of the three integers. You 
+// may assume that each input would have exactly one solution.
+// 
+//     For example, given array S = {-1 2 1 -4}, and target = 1.
+// 
+//     The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+import tester.Tester;
+
+import java.util.*;
+
+public class Solution {
+    public int threeSumClosest(int[] nums, int target) {
+        return this.threeSumClosestHelper(nums, 0, 
+        		0, 3, target);
+    }
+    
+    // GIVEN: a sub-array of ints nums[start,nums.length) represents the all
+    // of the optional numbers, sum represents the sum of all numbers that has 
+    // been chose, count represents the numbers that need to be chose
+    // WHERE: (0 <= startRst) && (startRst <= rst.length) &&
+    //		  (count >= nums.length - start)
+    // EFFECT: choose count ints in nums[start, nums.length) such that the 
+    // the sum of all of the chosen numbers is closest to target
+    // RETURNS: the sum of all chosen numbers
+    public int threeSumClosestHelper(int[] nums, int start, 
+    		int sum, int count, int target) {
+    	if(count == 0) {
+    		return sum;
+    	}
+    	else if(count == nums.length - start) {
+    		return sum + this.sumSubArray(nums, start, nums.length);
+    	}
+    	else {
+    		int sum1 = this.threeSumClosestHelper(nums, start + 1, sum, count, target);
+    		int sum2 = this.threeSumClosestHelper(nums, start + 1, sum + nums[start], 
+    					count - 1, target);
+    		return this.closet(sum1, sum2, target);
+    	}
+    }
+    
+    // RETURNS: the closet one to target in n1 and n2
+    public int closet(int n1, int n2, int target) {
+    	if(Math.abs(n1 - target) < Math.abs(n2 - target)) {
+			return n1;
+		}
+		else {
+			return n2;
+		}
+    }
+    
+    // RETURNS: the sum of all numbers in the given array
+    public int sumArray(int[] rst) {
+    	return this.sumSubArray(rst, 0, rst.length);
+    }
+    
+    // RETURNS: the sum of all numbers in rst[start, end)
+    public int sumSubArray(int[] rst, int start, int end) {
+    	int sum = 0;
+    	for(int i = start; i < end; i++) {
+    		sum += rst[i];
+    	}
+    	return sum;
+    }
+}
+
+class SolutionExamples {
+	Solution s = new Solution();
+	
+	// tests for method threeSumCloset() 
+	boolean testThreeSumCloset(Tester t) {
+		return
+		t.checkExpect(s.threeSumClosest(new int[]{-1, 2, 1, -4}, 0), 2) &&
+		t.checkExpect(s.threeSumClosest(new int[]{-1, 0, 1, -4}, 0), 0);
+	}
+}

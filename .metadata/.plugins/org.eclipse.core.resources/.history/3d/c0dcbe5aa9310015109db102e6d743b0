@@ -1,0 +1,58 @@
+// Leetcode 121
+// Best Time to Buy and Sell Stock
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+
+// Say you have an array for which the ith element is the price of a given stock 
+// on day i.
+// 
+// If you were only permitted to complete at most one transaction (ie, buy one and
+// sell one share of the stock), design an algorithm to find the maximum profit.
+import tester.Tester;
+
+public class Solution {
+    public int maxProfit(int[] prices) {
+    	int length = prices.length;
+    	//@assert 1 <= length;
+        int[] maxPriceBefore = new int[length];
+        int[] minPriceAfter = new int[length];
+        
+        maxPriceBefore[0] = prices[0];
+        for(int i = 1; i < length; i++) 
+        //@loop_invariant 1 <= i;
+        //@loop_invariant the value of kth element of maxPriceBefore[0, i)
+        // equals the maximum value of prices[0, k)
+        {
+        	maxPriceBefore[i] = Math.max(prices[i], maxPriceBefore[i - 1]);
+        }
+        
+        minPriceAfter[length - 1] = prices[length - 1];
+        for(int i = length - 1; i > 0; i--) 
+        //@loop_invariant 0 <= i;
+        /*@loop_invariant for (i <= k && k < length) the vlaue of 
+           minPriceAfter[k] is equal to the minimum value of prices[k, length)
+          @*/ 
+        {
+        	//@assert 1 <= i;
+        	minPriceAfter[i - 1] = Math.min(prices[i - 1], minPriceAfter[i]); 
+        }
+        
+        int profit = 0;
+        for(int i = 0; i < length; i++) 
+        //@loop_invariant 0 <= i;
+        {
+        	profit = Math.max(profit, maxPriceBefore[i] - minPriceAfter[i]);
+        }
+        return profit;
+    }
+}
+
+class SolutionExamples {
+	Solution s = new Solution();
+	
+	// tests for method maxProfit()
+	boolean testMaxProfit(Tester t) {
+		return
+		t.checkExpect(s.maxProfit(new int[] {1, 3, 5, 4}), 4) &&
+		t.checkExpect(s.maxProfit(new int[] {5, 3, 1, 4}), 3);		
+	}
+}
