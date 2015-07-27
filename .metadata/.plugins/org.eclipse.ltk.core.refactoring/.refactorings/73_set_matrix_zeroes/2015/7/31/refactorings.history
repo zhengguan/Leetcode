@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;i&apos; in &apos;Solution.setRowZero(...)&apos; to &apos;j&apos;&#x0D;&#x0A;- Original project: &apos;73_set_matrix_zeroes&apos;&#x0D;&#x0A;- Original element: &apos;Solution.setRowZero(int[][], int).i&apos;&#x0D;&#x0A;- Renamed element: &apos;i&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;i&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{Solution.java[Solution~setRowZero~\[\[I~I@i!1266!1274!1270!1270!I!0!false" name="j" references="true" stamp="1437882739061" version="1.0"/>
+</session>
