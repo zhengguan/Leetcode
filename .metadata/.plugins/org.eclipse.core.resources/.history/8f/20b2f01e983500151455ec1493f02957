@@ -1,0 +1,96 @@
+// Leetcode 22
+// Generate Parentheses
+// https://leetcode.com/problems/generate-parentheses/
+
+// Given n pairs of parentheses, write a function to generate all combinations
+// of well-formed parentheses.
+// 
+// For example, given n = 3, a solution set is:
+// 
+// "((()))", "(()())", "(())()", "()(())", "()()()"
+import tester.Tester;
+
+import java.util.*;
+
+public class Solution {
+	List<String> parens;
+    public List<String> generateParenthesis(int n) {
+        parens = new ArrayList<String>();
+        if(n <= 0) {
+        	return parens;
+        }
+        else {
+        	this.generateParenthesisHelper(n, "", "");
+        	return parens;
+        }
+    }
+    
+    // WHERE: 0 <= n;
+    // EFFECT: generate Strings of all well-formed n pairs of parentheses,
+    // for each String generated concatenate pre and the beginning and post
+    // at the end
+    public void generateParenthesisHelper(int n, String pre, String post) {
+    	if(n == 1) {
+    		parens.add(pre + "()" + post);
+    	}
+    	else {
+    		this.generateParenthesisHelper(n - 1, pre + "(", ")" + post);
+    		this.generateParenthesisHelper(n - 1, pre + "()", post);
+    	}
+    }
+}
+
+// REPRESENTS:
+class ListRelatedMethods<X> {
+	// RETURNS: true iff l1 contains all elements in l2
+	boolean contains(List<X> l1, List<X> l2) {
+		for(int i = 0; i < l2.size(); i++) {
+			if(!l1.contains(l2.get(i))) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	// RETURNS: true iff l1 and l2 contains the same elements
+	boolean equals(List<X> l1, List<X> l2) {
+		return this.contains(l1, l2) && this.contains(l2, l1);
+	}
+	
+	// RETURSN: a corresponding list of the given array
+	List<X> arrayToList(X[] array) { 
+		ArrayList<X> list = new ArrayList<X>();
+		for(int i = 0; i < array.length; i++) {
+			list.add(array[i]);
+		}
+		return list;
+	}
+}
+
+class SolutionExamples {
+	Solution s = new Solution();
+	ListRelatedMethods<String> listMethods = new ListRelatedMethods<String>();
+	
+	// RETURNS: true iff the set of Strings in loParens and arroParens are 
+	// equal
+	boolean checkGeneratedParen(Tester t, List<String> loParens, String[] arroParens) {
+		return 
+			t.checkExpect(this.listMethods.equals(loParens, 
+							this.listMethods.arrayToList(arroParens)),
+						  true);
+	}
+	
+	// tests for method generateParenthesis()
+	boolean testGenerateParenthesis(Tester t) {
+		return
+		t.checkExpect(s.generateParenthesis(0), 
+				listMethods.arrayToList(new String[0])) &&
+		t.checkExpect(s.generateParenthesis(1), 
+				listMethods.arrayToList(new String[]{"()"})) &&
+		this.checkGeneratedParen(t, s.generateParenthesis(2), 
+				new String[]{"()()", "(())"}) &&
+		this.checkGeneratedParen(t, s.generateParenthesis(3), 
+				new String[]{"((()))", "(()())", "(())()", 
+					"()(())", "()()()"});
+	}
+}
