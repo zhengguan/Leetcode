@@ -1,0 +1,118 @@
+// Leetcode 33
+// Search in Rotated Sorted Array
+// https://leetcode.com/problemset/algorithms/
+
+// Suppose a sorted array is rotated at some pivot unknown to you beforehand.
+// 
+// (i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
+// 
+// You are given a target value to search. If found in the array return its index,
+// otherwise return -1.
+// 
+// You may assume no duplicate exists in the array.
+
+
+import tester.Tester;
+
+import java.util.*;
+
+public class Solution {
+    public int search(int[] nums, int target) {
+    	return this.searchHelper(nums, 0, nums.length, target);
+    }
+    
+    // GIVEN: nums is a rotated sorted array with no repeated elements, 
+    // [start, end) represents a range, target represents the value to be 
+    // searched in nums[start, end)
+    // WHERE: 0 <= start && start <= end && end <= nums.length;
+    // RETURNS: the index of the element in nums[start, end) that is equal 
+    // to target if exists, otherwise -1 
+    // TERMINATION: the value of (end - start) becomes smaller
+    public int searchHelper(int[] nums, int start, int end, int target) {
+    	if(end - start == 0) {
+    		return -1;
+    	}
+    	else if(end - start == 1) {
+    		return (nums[start] == target) ? start : -1;
+    	}
+    	else {
+    		int mid = start + (end - start) / 2;
+    		//@assert start < mid && mid < end;
+    		if(nums[mid] == target) {
+    			return mid;
+    		}
+    		else {
+    			if(nums[start] <= nums[mid]) {
+    				//@assert nums[start, mid) is sorted without rotation
+    				if(nums[start] <= target && target < nums[mid]) {
+    					return Arrays.binarySearch(nums, start, mid, target);
+    				}
+    				else {
+    					return this.searchHelper(nums, mid + 1, end, target);    						
+    				}
+    			}
+    			else {
+    				//@assert nums[mid, end) is sorted without rotation    				
+    				if(nums[mid] < target && target <= nums[end - 1]) {
+    					return Arrays.binarySearch(nums, mid + 1, end, target);
+    				}
+    				else {
+    					return this.searchHelper(nums, start, mid, target);    					
+    				}
+    			}
+    		}
+    	}
+    }
+    
+    
+    // GIVEN: nums is a rotated sorted array with no repeated elements, 
+    // [start, end) represents a range, target represents the value to be 
+    // searched in nums[start, end)
+    // WHERE: 0 <= start && start <= end && end <= nums.length;
+    // RETURNS: the index of the element in nums[start, end) that is equal 
+    // to target if exists, otherwise -1 
+    public int searchHelperIter(int[] nums, int start, int end, int target) {
+    	while(start < end) {
+    		int mid = start + (end - start) / 2;
+    		//@assert start <= mid && mid < end;
+    		if(nums[mid] == target) {
+    			return mid;
+    		}
+    		else {
+    			if(nums[mid] >= nums[start]) {
+    				int result =  Arrays.binarySearch(nums, start, mid, target);
+    				if(result > -1) {
+    					return result;
+    				}
+    				else {
+    					start = mid + 1;    						
+    				}
+    			}
+    			else {
+    				int result = Arrays.binarySearch(nums, mid + 1, end, target); 
+    				if(result > -1) {
+    					return result;
+    				}
+    				else {
+    					end = mid;    					
+    				}
+    			}
+    		}
+    	}
+    	return -1;
+    }
+}
+
+class SolutionExamples {
+	Solution s = new Solution();
+	
+	// tests for method search()
+	boolean testSearch(Tester t) {
+		return
+		t.checkExpect(s.search(new int[] {1, 0}, 2), -1) &&
+		t.checkExpect(s.search(new int[] {1, 0}, 1), 0) &&
+		t.checkExpect(s.search(new int[] {4, 5, 6, 7, 0, 1, 2}, 3), -1) &&
+		t.checkExpect(s.search(new int[] {4, 5, 6, 7, 0, 1, 2}, 5), 1) &&
+		t.checkExpect(s.search(new int[] {4, 5, 6, 7, 0, 1, 2}, 2), 6);
+	}
+}
