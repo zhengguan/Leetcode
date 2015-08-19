@@ -1,0 +1,70 @@
+// Leetcode 77
+// Combinations
+// https://leetcode.com/problems/combinations/
+
+// Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
+// 
+// For example,
+// If n = 4 and k = 2, a solution is:
+// 
+// [
+//   [2,4],
+//   [3,4],
+//   [2,3],
+//   [1,2],
+//   [1,3],
+//   [1,4],
+// ]
+
+import java.util.*;
+
+public class Solution {
+	
+	// TERMINATION: the value of k becomes smaller
+    public List<List<Integer>> combine(int n, int k) {
+        if (n < k || k <= 0) {
+            return new ArrayList<List<Integer>>();
+        }
+        else {
+        	return combineHelper(n, k);
+        }
+    }
+    
+    // WHERE: 1 <= k && k <= n
+    // RETURNS: all combinations of k numbers out of 1...n 
+    private List<List<Integer>> combineHelper(int n, int k) {
+        if (k == 1) {
+        	ArrayList<List<Integer>> result = new ArrayList<List<Integer>>();
+        	for (int i = 1; i <= n; i++) {
+        		ArrayList<Integer> l = new ArrayList<Integer>();
+        		l.add(i);
+        		result.add(l);
+        		result.(Arrays.asList({i}));
+        	}
+        	return result;
+        }
+        else if (n == k) {
+            ArrayList<List<Integer>> result = new ArrayList<List<Integer>>();
+            ArrayList<Integer> l = new ArrayList<Integer>();
+            for(int i = 1; i <= k; i++) {
+                l.add(i);
+            }
+            result.add(l);
+            return result;
+        }
+        else {
+            //@asert n > k;
+            List<List<Integer>> result = combine(n - 1, k - 1); // combinations that contain n
+            for(List<Integer> l : result) {
+                l.add(n);
+            }
+            result.addAll(combine(n - 1, k));  // add combinations do not contain n
+            return result;
+        }
+    }
+    
+    public static void main(String[] args) {
+    	Solution s = new Solution();
+    	System.out.println(s.combine(4, 2));
+    }
+}

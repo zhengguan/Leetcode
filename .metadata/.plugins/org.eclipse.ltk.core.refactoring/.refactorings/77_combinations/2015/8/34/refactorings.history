@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;lol&apos; in &apos;Solution.combine(...)&apos; to &apos;result&apos;&#x0D;&#x0A;- Original project: &apos;77_combinations&apos;&#x0D;&#x0A;- Original element: &apos;Solution.combine(int, int).lol&apos;&#x0D;&#x0A;- Renamed element: &apos;lol&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;lol&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{Solution.java[Solution~combine~I~I@lol!626!687!651!653!QArrayList\&lt;QList\&lt;QInteger;&gt;;&gt;;!0!false" name="result" references="true" stamp="1439947954569" version="1.0"/>
+</session>
