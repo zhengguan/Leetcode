@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;mask&apos; in &apos;Solution.existNthBitZero(...)&apos; to &apos;mask1&apos;&#x0D;&#x0A;- Original project: &apos;201_bitwise_and_of_numbers_range&apos;&#x0D;&#x0A;- Original element: &apos;Solution.existNthBitZero(int, int, int).mask&apos;&#x0D;&#x0A;- Renamed element: &apos;mask&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;mask&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{Solution.java[Solution~existNthBitZero~I~I~I@mask!804!821!808!811!I!0!false" name="mask1" references="true" stamp="1440034915051" version="1.0"/>
+</session>
