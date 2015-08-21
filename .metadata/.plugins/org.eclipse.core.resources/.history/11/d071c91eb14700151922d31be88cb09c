@@ -1,0 +1,68 @@
+// Leetcode 110
+// Balanced Binary Tree
+// https://leetcode.com/problems/balanced-binary-tree/
+
+// Given a binary tree, determine if it is height-balanced.
+// 
+// For this problem, a height-balanced binary tree is defined 
+// as a binary tree in which the depth of the two subtrees of 
+// every node never differ by more than 1.
+
+
+class TreeNode {
+	int val;
+	TreeNode left;
+	TreeNode right;
+
+	TreeNode(int x) {
+		val = x;
+	}
+}
+
+// RETRESENTS: the state of a binary tree
+class Result {
+	int height;			// height of the tree
+	boolean isBalanced; // whether the tree is balanced
+	
+	Result(int height, boolean isBalanced) {
+		this.height = height;
+		this.isBalanced = isBalanced;
+	}
+}
+
+public class Solution {
+    public boolean isBalanced(TreeNode root) {
+        return checkTreeState(root).isBalanced;
+    }
+    
+    private Result checkTreeState(TreeNode root) {
+    	if (root == null) {
+    		return new Result(0, true);
+    	}
+    	else {
+    		Result lResult = checkTreeState(root.left);
+    		Result rResult = checkTreeState(root.right);
+    		int height = 1 + Math.max(lResult.height, rResult.height);
+    		if (Math.abs(lResult.height - rResult.height) <= 1) {
+    			lResult.height = height;
+    			lResult.isBalanced = true;
+    			return lResult;
+    		}
+    		else {
+    			lResult.height = height;
+    			lResult.isBalanced = false;
+    			return lResult;
+    		}
+    	}
+    }
+    
+    // RETURNS: the height of the given tree
+    public int height(TreeNode root) {
+    	if (root == null) {
+    		return 0;
+    	}
+    	else {
+    		return 1 + Math.max(height(root.left), height(root.right));
+    	}
+    }
+}
