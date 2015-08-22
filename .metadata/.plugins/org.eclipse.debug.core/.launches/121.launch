@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/110_balanced_binary_tree"/>
+<listEntry value="/81_search_in_rotated_sorted_array_II"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="4"/>
@@ -9,5 +9,5 @@
 <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="tester.Main"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="SolutionExamples"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="110_balanced_binary_tree"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="81_search_in_rotated_sorted_array_II"/>
 </launchConfiguration>
