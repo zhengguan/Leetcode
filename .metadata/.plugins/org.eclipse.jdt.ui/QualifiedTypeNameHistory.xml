@@ -5,7 +5,6 @@
 <fullyQualifiedTypeName name="java.lang.reflect.Array"/>
 <fullyQualifiedTypeName name="java.awt.print.Printable"/>
 <fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="java.lang.ArrayStoreException"/>
 <fullyQualifiedTypeName name="ListNode"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
@@ -20,4 +19,5 @@
 <fullyQualifiedTypeName name="Solution"/>
 <fullyQualifiedTypeName name="tester.Tester"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="java.lang.ArrayStoreException"/>
 </qualifiedTypeNameHistroy>

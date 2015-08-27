@@ -1,0 +1,32 @@
+// Leetcode 219	
+// Contains Duplicate II
+// https://leetcode.com/problems/contains-duplicate-ii/
+
+// Given an array of integers and an integer k, find out whether there are two 
+// distinct indices i and j in the array such that nums[i] = nums[j] and the 
+// difference between i and j is at most k
+
+import java.util.*;
+
+public class Solution {
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        Map<Integer, Integer> map = new TreeMap<Integer, Integer>();
+    }
+    
+    /**
+     * 
+     * @param nums
+     * @param start 0 <= start;
+     * @param end start <= end && end <= nums.length;
+     * @param target
+     * @return true iff nums[start,end) contains an element equal to target
+     */
+    private boolean contain(int[] nums, int start, int end, int target) {
+    	for(int i = start; i < end; i++) {
+    		if(nums[i] == target) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+}
