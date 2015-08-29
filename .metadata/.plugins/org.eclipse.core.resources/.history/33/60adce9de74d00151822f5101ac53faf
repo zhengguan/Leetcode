@@ -1,0 +1,52 @@
+// Leetcode 90
+// Subsets II
+// https://leetcode.com/problems/subsets-ii/
+
+/*
+Given a collection of integers that might contain duplicates, nums, 
+return all possible subsets.
+
+Note:
+Elements in a subset must be in non-descending order.
+The solution set must not contain duplicate subsets.
+For example,
+If nums = [1,2,2], a solution is:
+
+[
+  [2],
+  [1],
+  [1,2,2],
+  [2,2],
+  [1,2],
+  []
+]
+*/
+import java.util.*;
+
+public class Solution {
+    // List<List<Integer>> result = new ArrayList<List<Integer>>();
+    
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        if(nums.length == 0) {
+            return new ArrayList<List<Integer>>();
+        }
+        else {
+        	int[] copy = new int[nums.length];
+        	System.arraycopy(nums, 0, copy, 0, nums.length);
+        	return helper(nums, 0);
+        }
+    }
+    
+    // WHERE: nums minght contain duplicates
+    // RETURNS: all subsets of elements in nums[start, nums.length)
+    private List<List<Integer>> helper(int[] nums, int start) {
+    	if(start == nums.length) {
+    		List<List<Integer>> result = new ArrayList<List<Integer>>();
+    		result.add(new ArrayList<Integer>());
+    		return result;
+    	}
+    	else {
+    		List<List<Integer>> result = new ArrayList<List<Integer>>();
+    	}
+    }
+}
