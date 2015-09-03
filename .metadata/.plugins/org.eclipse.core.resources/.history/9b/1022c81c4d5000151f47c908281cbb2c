@@ -1,0 +1,58 @@
+// Leetcode 115	
+// Distinct Subsequences
+// https://leetcode.com/problems/distinct-subsequences/
+
+/*
+Given a string S and a string T, count the number of distinct subsequences of T
+in S.
+
+A subsequence of a string is a new string which is formed from the original 
+string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (ie, "ACE" is a subsequence of "ABCDE" while "AEC" is not).
+
+Here is an example:
+S = "rabbbit", T = "rabbit"
+
+Return 3.
+ */
+
+public class Solution {
+    public int numDistinct(String s, String t) {
+        return helperRecur(s, 0, t, 0);
+    }
+    
+    // GIVEN: two Strings s, t, two ints s1, t1
+    // WHERE: 0 <= s1 && s1 <= s.length() && 0 <= t1 && t1 <= t.length();
+    // RETURNS: the number of distinct subsequence of t[t1, t.length())
+    // in s[s1, s.length())
+    // TERMINATION: the value of t1 becomes smaller
+    private int helperRecur(String s, int s1, String t, int t1) {
+    	if(t1 == t.length()) {
+    		return 1;
+    	}    	
+    	else {
+    		int count = 0;
+    		for(int i = s1; i < s.length(); i++) {
+    			if(s.charAt(i) == t.charAt(t1)) {
+    				count += helperRecur(s, i + 1, t, t1 + 1);
+    			}
+    		}
+    		
+    		count += helperRecur(s, s1 + 1, t, t1 + 1);
+    		return count;
+    	}
+    }
+    
+    // GIVEN: two Strings s, t, two ints s1, t1
+    // WHERE: 0 <= s1 && s1 <= s.length() && 0 <= t1 && t1 <= t.length();
+    // RETURNS: the number of distinct subsequence of t[t1, t.length())
+    // in s[s1, s.length())
+    // TERMINATION: the value of t1 becomes smaller
+    private int helperIter(String s, String t) {
+    	int[][] counts = new int[s.length() + 1][t.length() + 1];
+    	for(int i = 0; i < t.length() + 1; i++) {
+    		counts[s.length()][i] = 1;
+    	}
+    	
+    	
+    }
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;index&apos; in &apos;Solution.indexOfMinGreaterThan(...)&apos; to &apos;result&apos;&#x0D;&#x0A;- Original project: &apos;31_next_permutation&apos;&#x0D;&#x0A;- Original element: &apos;Solution.indexOfMinGreaterThan(int[], int, int, int).index&apos;&#x0D;&#x0A;- Renamed element: &apos;index&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;index&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{Solution.java[Solution~indexOfMinGreaterThan~\[I~I~I~I@index!1277!1291!1281!1285!I!0!false" name="result" references="true" stamp="1441246743510" version="1.0"/>
+</session>

@@ -18,6 +18,8 @@
 <fullyQualifiedTypeName name="TreeNode"/>
 <fullyQualifiedTypeName name="Solution"/>
 <fullyQualifiedTypeName name="tester.Tester"/>
-<fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="java.lang.ArrayStoreException"/>
+<fullyQualifiedTypeName name="java.util.Objects"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="java.util.Map.Entry"/>
 </qualifiedTypeNameHistroy>

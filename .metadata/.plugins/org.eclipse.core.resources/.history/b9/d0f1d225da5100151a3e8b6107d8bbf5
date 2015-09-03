@@ -1,0 +1,20 @@
+import static org.junit.Assert.*;
+
+import org.junit.*;
+
+
+public class SolutionTest {
+	int[][] nums;
+	
+	@Before
+	public void setUp() {
+		nums = new int[3][];
+		nums[1] = new int[]{1, 2, 3};
+	}
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}
