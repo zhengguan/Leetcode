@@ -1,0 +1,16 @@
+import static org.junit.Assert.*;
+
+import org.junit.*;
+
+
+public class SolutionTest {
+	private boolean sameListOfList(List<List<Integer>> lol1, List<List<Integer>> lol2) {
+		
+	}
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}
