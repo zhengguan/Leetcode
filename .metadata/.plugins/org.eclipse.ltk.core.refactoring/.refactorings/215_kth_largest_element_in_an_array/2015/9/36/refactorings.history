@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;mid&apos; in &apos;Solution.findKthLargest(...)&apos; to &apos;index&apos;&#x0D;&#x0A;- Original project: &apos;215_kth_largest_element_in_an_array&apos;&#x0D;&#x0A;- Original element: &apos;Solution.findKthLargest(int[], int).mid&apos;&#x0D;&#x0A;- Renamed element: &apos;mid&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;mid&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{Solution.java[Solution~findKthLargest~\[I~I@mid!689!724!693!695!I!0!false" name="index" references="true" stamp="1441419889487" version="1.0"/>
+</session>

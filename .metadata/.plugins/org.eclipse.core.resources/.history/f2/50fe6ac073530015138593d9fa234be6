@@ -1,0 +1,20 @@
+import static org.junit.Assert.*;
+
+import org.junit.*;
+
+
+public class SolutionTest {
+	Solution s;
+
+	@Before 
+	public void setUp() {
+		s = new Solution();
+	}
+	
+	@Test
+	public void test() {
+		assertEquals(s.findKthLargest(new int[]{3,2,1,5,6,4}, 2), 5);
+		assertEquals(s.findKthLargest(new int[]{3,2,1,5,6,4,5,2}, 1), 6);
+	}
+
+}

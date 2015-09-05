@@ -1,0 +1,19 @@
+import static org.junit.Assert.*;
+
+import org.junit.*;
+
+
+public class SolutionTest {
+	Solution s;
+
+	@Before 
+	public void setUp() {
+		s = new Solution();
+	}
+	
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}
