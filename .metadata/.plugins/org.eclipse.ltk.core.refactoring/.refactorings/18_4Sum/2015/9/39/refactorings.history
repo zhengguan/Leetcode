@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename method &apos;Solution.sumHelper(...)&apos; to &apos;fourSumHelper&apos;&#x0D;&#x0A;- Original project: &apos;18_4Sum&apos;&#x0D;&#x0A;- Original element: &apos;Solution.sumHelper(...)&apos;&#x0D;&#x0A;- Renamed element: &apos;Solution.fourSumHelper(...)&apos;&#x0D;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;sumHelper&apos;" flags="589826" id="org.eclipse.jdt.ui.rename.method" input="/src&lt;{Solution.java[Solution~sumHelper~\[I~I~I~I" name="fourSumHelper" references="true" stamp="1442977896062" version="1.0"/>
+</session>

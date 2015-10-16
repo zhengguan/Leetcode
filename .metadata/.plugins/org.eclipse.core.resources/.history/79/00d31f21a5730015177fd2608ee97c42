@@ -1,0 +1,153 @@
+// Leetcode 109	
+// Convert Sorted List to Binary Search Tree
+// https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/
+/*
+Given a singly linked list where elements are sorted in ascending order, 
+convert it to a height balanced BST.
+*/
+
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int x) { val = x; }
+}
+
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int x) { val = x; }
+}
+
+
+class BSTNode extends TreeNode {
+    int height;
+    
+    public BSTNode left() {
+    	return (BSTNode) left;
+    }
+    
+    public BSTNode right() {
+    	return (BSTNode) right;
+    }
+    
+    BSTNode(int x) {
+        super(x);
+        height = 1;
+    }
+    
+    public String toString() {
+    	String result = "[ " + val + " ] ";
+    	return "["+ val + left + "," + right + "]";
+    }
+}
+
+class BST {
+    BSTNode root;
+    
+    BST() {
+        root = null;
+        return;
+    }
+    
+    public void insert(int x) {
+        root = insertHelper(x, root);
+    }
+    
+    private BSTNode insertHelper(int x, BSTNode root) {
+        if (root == null) {
+            return new BSTNode(x);
+        } else {
+            if (x < root.val) {
+                root.left = insertHelper(x, root.left());
+                root = rebalanceLeft(root);
+            } else if (x > root.val) {
+                root.right = insertHelper(x, root.right());
+                root = rebalanceRight(root);
+            }
+            return root;
+        }
+    }
+
+    // GIVEN: a bst that has been inserted an element in its left child
+    // WHERE: root.left and root.right is balanced, (root.left != null)
+    // RETURNS: a bst like the given one but rebalanced    
+    private BSTNode rebalanceLeft(BSTNode root) {
+        if (height(root.left()) - height(root.right()) == 2) {
+            BSTNode left = root.left();
+            if (height(left.left()) > height(left.right())) {
+                root = rotateRight(root);
+            } else {
+                //@assert left.left.height < left.right.height;
+                root.left = rotateLeft(left);
+                root = rotateRight(root);
+            }
+        } else {
+            fixHeight(root);
+        }
+        return root;
+    }
+    
+    // GIVEN: a bst that has been inserted an element in its right child
+    // WHERE: root.left and root.right is balanced, (root.right != null)
+    // RETURNS: a bst like the given one but rebalanced
+    private BSTNode rebalanceRight(BSTNode root) {
+        if (height(root.right()) - height(root.left()) == 2) {
+            BSTNode right = root.right();
+            if (height(right.right()) > height(right.left())) {
+                root = rotateLeft(root);
+            } else {
+                //@assert height(right.right) < height(right.left);
+                root.right = rotateRight(right);
+                root = rotateLeft(root);
+            }
+        } else {
+            fixHeight(root);
+        }
+        return root;
+    }
+    
+    // WHERE: root.left root.right is balanced
+    private BSTNode rotateLeft(BSTNode root) {
+        BSTNode right = root.right();
+        root.right = right.left;
+        right.left = root;
+        fixHeight(root);
+        fixHeight(right);
+        return right;
+    }
+    
+    private BSTNode rotateRight(BSTNode root) {
+        BSTNode left = root.left();
+        root.left = left.right;
+        left.right = root;
+        fixHeight(root);
+        fixHeight(left);
+        return left;
+    }
+    
+    private void fixHeight(BSTNode root) {
+        root.height = Math.max(height(root.left()), height(root.right())) + 1;
+    }
+    
+    private int height(BSTNode root) {
+        if (root == null) {
+            return 0;
+        } else {
+            return root.height;
+        }
+    }
+}
+
+ 
+public class Solution {
+    public TreeNode sortedListToBST(ListNode head) {
+        BST bst = new BST();
+        while (head != null) {
+            bst.insert(head.val);
+            head = head.next;
+        }
+        return bst.root;
+    }
+}

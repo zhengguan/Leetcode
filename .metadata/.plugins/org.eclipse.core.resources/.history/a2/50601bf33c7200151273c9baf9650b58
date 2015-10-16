@@ -1,0 +1,57 @@
+// Leetcode 34	
+// Search for a Range
+// https://leetcode.com/problems/search-for-a-range/
+
+interface Predicate<T> {
+    boolean predicate(T m, T n);
+}
+
+public class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        if (nums == null) {
+            return new int[]{-1,-1};
+        }
+        int start = partition(nums, target, new LessThan());
+        if (start == nums.length || nums[start] != target) {
+            return new int[]{-1, -1};
+        }
+        
+        int end = partition(nums, target, new LessThanOrEqual());
+        if (end == 0 || nums[end-1] != target) {
+            return new int[]{-1, -1};
+        }
+        
+        return new int[]{start, end-1};
+    }
+    
+    // RETURNS: the index i, such that for all elements in nums[0, i) satisfy comparator,
+    // all elements in nums[i,nums.length) do not satisfy comparator.
+    private int partition(int[] nums, int target, Predicate<Integer> p) {
+        int start = 0;
+        int end = nums.length;
+        while (start < end) 
+        //@loop_invariant for i in [0, start), comparator.compare(nums[i],target) == true;
+        //@loop_invariant for i in [end, nums.length), comparator.compare(nums[i], target) == false;
+        {
+            int mid = start + (end - start) / 2;
+            //@assert start <= mid && mid < end;
+            if (p.predicate(nums[mid], target)) {
+                start = mid + 1;
+            } else {
+                end = mid;
+            }
+        }
+        return start;
+    }
+    
+    private class LessThan implements Predicate<Integer> {
+        public boolean predicate(Integer m, Integer n) {
+            return m < n;
+        }
+    }
+    private class LessThanOrEqual implements Predicate<Integer> {
+        public predicate(Integer m, Integer n) {
+            return m <= n;
+        }
+    }
+}

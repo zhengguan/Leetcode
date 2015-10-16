@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;reverseOrder&apos; in &apos;Solution.zigzagLevelOrderOfForest(...)&apos; to &apos;fromBackward&apos;&#x0D;&#x0A;- Original project: &apos;103_binary_tree_zigzag_level_order_traversal&apos;&#x0D;&#x0A;- Original element: &apos;Solution.zigzagLevelOrderOfForest(List&lt;TreeNode&gt;, List&lt;List&lt;Integer&gt;&gt;, boolean).reverseOrder&apos;&#x0D;&#x0A;- Renamed element: &apos;reverseOrder&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;reverseOrder&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{Solution.java[Solution~zigzagLevelOrderOfForest~QList\&lt;QTreeNode;&gt;;~QList\&lt;QList\&lt;QInteger;&gt;;&gt;;~Z@reverseOrder!1538!1557!1546!1557!Z!0!true" name="fromBackward" references="true" stamp="1444115740944" version="1.0"/>
+</session>

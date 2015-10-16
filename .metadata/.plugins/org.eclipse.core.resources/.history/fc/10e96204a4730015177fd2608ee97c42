@@ -1,0 +1,29 @@
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+
+public class SolutionTest {
+	Solution s;
+	
+	private ListNode arrayToList(int... nums) {
+		ListNode head = null;
+		ListNode curr = null;
+		for (int i : nums) {
+			if (head == null) {
+				head = new ListNode(i);
+				curr = head;
+			} else {
+				curr.next = new ListNode(i);
+				curr = curr.next;
+			}
+		}
+		return head;
+	}
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}
